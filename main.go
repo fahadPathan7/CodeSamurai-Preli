@@ -1,7 +1,6 @@
 package main
 import (
 	"fmt"
-	"samurai/controller"
 	"samurai/router"
 	"net/http"
 
@@ -9,9 +8,7 @@ import (
 )
 
 func main() {
-	controller.CreateDbConnection() // creating database connection
-
-	fmt.Println("Server is running at port 5000...") // shows that server is running
+	fmt.Println("Server is starting at port 5000...")
 
 	r := router.Router() // create router. it will be used to register routes.
 
@@ -34,5 +31,5 @@ func main() {
 	// second parameter is the handler. nil means use default handler.
 	// default handler is router. so it will use router to handle all the incoming requests.
 
-	fmt.Println("Server is stopped!...") // shows that server is stopped
+	fmt.Println("Server is running at port 5000.")
 }
