@@ -8,8 +8,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Server is starting at port 5000...")
-
 	r := router.Router() // create router. it will be used to register routes.
 
 	// Create a CORS handler with desired options.
@@ -27,9 +25,8 @@ func main() {
 	// it will handle all the incoming requests. "/" means all incoming requests.
 	// second parameter is the router. here it is wrapped with CORS handler.
 
+	fmt.Println("Server is running at port 5000...")
 	http.ListenAndServe(":5000", nil) // this will start the server.
 	// second parameter is the handler. nil means use default handler.
 	// default handler is router. so it will use router to handle all the incoming requests.
-
-	fmt.Println("Server is running at port 5000.")
 }

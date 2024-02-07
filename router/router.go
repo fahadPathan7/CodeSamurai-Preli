@@ -12,7 +12,8 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/books", controller.InsertBook).Methods("POST")
 	router.HandleFunc("/api/books/{id}", controller.UpdateABook).Methods("PUT")
 	router.HandleFunc("/api/books/{id}", controller.GetABook).Methods("GET")
-	router.HandleFunc("/api/books", controller.GetAllBooks).Methods("GET")
+	router.HandleFunc("/api/books", controller.SearchBooks).Methods("GET")
+
 
 	return router
 }
