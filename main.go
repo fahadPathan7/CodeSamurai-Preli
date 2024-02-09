@@ -25,8 +25,8 @@ func main() {
 	// it will handle all the incoming requests. "/" means all incoming requests.
 	// second parameter is the router. here it is wrapped with CORS handler.
 
-	fmt.Println("Server is running at port 5000...")
-	http.ListenAndServe(":5000", nil) // this will start the server.
+	fmt.Println("Server is running at port 8000...")
+	http.ListenAndServe(":8000", nil) // this will start the server.
 	// second parameter is the handler. nil means use default handler.
 	// default handler is router. so it will use router to handle all the incoming requests.
 }

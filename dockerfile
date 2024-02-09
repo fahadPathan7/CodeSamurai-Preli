@@ -13,7 +13,7 @@ RUN go mod download
 RUN go build -o bin .
 
 # Expose port 5000 to the outside world
-EXPOSE 5000
+EXPOSE 8000
 
 ENTRYPOINT [ "/app/bin" ]
 
@@ -23,4 +23,7 @@ ENTRYPOINT [ "/app/bin" ]
 
 
 # docker build -t go-containerized:latest .
-# docker run -p 5000:5000 go-containerized:latest # Run the image with port forwarding
+# docker run -p 8000:8000 go-containerized:latest # Run the image with port forwarding
+
+# docker build --tag=sol:latest .
+# docker run -dit -p 8000:8000 --rm --name=sol sol:latest
