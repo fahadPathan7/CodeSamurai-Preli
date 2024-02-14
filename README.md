@@ -1,4 +1,4 @@
-# CodeSamurai Preliminary Round 2024
+# <p align="center">CodeSamurai Preliminary Round 2024</p>
 
 ## Question
 [Preliminary round](./Questions/[Updated]%20Preliminary%20Round%20Problem%20Statement.pdf)
