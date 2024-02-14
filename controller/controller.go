@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"os"
 	"samurai/models"
 	"strconv"
 
@@ -16,9 +17,9 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-)
 
-const connectionString = "mongodb+srv://fahadpathan56:fahadpathan@cluster0.oxoqi6z.mongodb.net/"
+	"github.com/joho/godotenv"
+)
 
 const dbName = "samurai"
 const colNameUser = "user"
@@ -31,6 +32,15 @@ var collectionTrain *mongo.Collection
 
 func init() {
 	fmt.Println("Taking some time for deleting the existing database and creating a new one...")
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+	var userName = os.Getenv("userName")
+	var password = os.Getenv("password")
+	
+	var connectionString = "mongodb+srv://" + userName + ":" + password + "@cluster0.oxoqi6z.mongodb.net/"
 	clientOptions := options.Client().ApplyURI(connectionString)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
@@ -429,42 +439,6 @@ func InsertMoneyIntoWallet(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(wallet)
 }
 
-// // get users wallet balance
-// func checkWalletBalance(userID int) (int, error) {
-// 	filter := bson.M{"user_id": userID}
-
-// 	var user models.User
-// 	err := collectionUser.FindOne(context.Background(), filter).Decode(&user)
-
-// 	if err != nil {
-// 		return 0, err
-// 	}
-
-// 	return user.Balance, nil
-// }
-
-// // find optimal route and calculate total fare
-// func findOptimalRoute(stationFrom int, stationTo int, timeAfter string) []models.StationsTicket {
-
-// }
-
-// // deduct fare from wallet
-// func deductFromWallet(userID int, fare int) (int, error) {
-// 	filter := bson.M{"user_id": userID}
-
-// 	update := bson.M{"$inc": bson.M{"balance": -fare}}
-
-// 	_, err := collectionUser.UpdateOne(context.Background(), filter, update)
-
-// 	if err != nil {
-// 		return 0, err
-// 	}
-
-// 	user := printWallet(userID)
-
-// 	return user.Balance, nil
-// }
-
 // controller function to purchase a ticket
 func PurchaseTicket(w http.ResponseWriter, r *http.Request) {
 	// json format
@@ -501,19 +475,6 @@ func BestTicket(w http.ResponseWriter, r *http.Request) {
         too = to
     }
 
-
-	// 	args := r.URL.Query()
-
-//     var searchKey, searchVal, sortKey, sortOrder string
-
-//     if title := args.Get("title"); title != "" {
-//         searchKey, searchVal = "title", title
-//     } else if author := args.Get("author"); author != "" {
-//         searchKey, searchVal = "author", author
-//     } else if genre := args.Get("genre"); genre != "" {
-//         searchKey, searchVal = "genre", genre
-//     }
-
 	// status code forbidden
 	w.WriteHeader(http.StatusForbidden)
 
@@ -525,6 +486,10 @@ func BestTicket(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
+
+
+
+// my codes for the mock contest
 
 // func InsertBook(w http.ResponseWriter, r *http.Request) {
 // 	w.Header().Set("Content-Type", "application/json")
